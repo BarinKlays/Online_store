@@ -1,0 +1,41 @@
+{% extends "./accounts.html" %}
+{% load static %}
+{% block content %}
+
+        <div class="auth-wrapper">
+            <div class="container-fluid h-100">
+                <div class="row flex-row justify-content-center h-100 bg-white">
+                    <div class="col-xl-4 col-lg-6 col-md-7 my-auto p-0">
+                        <div class="authentication-form mx-auto">
+                            <div class="logo-centered">
+                                <a href="../../../../../themekit-master/index.html"><img src="../../../../../themekit-master/src/img/brand.svg" alt=""></a>
+                            </div>
+                            <h3 style="text-align: center">Авторизация</h3>
+                            {% for mese in messages %}
+                            <div>{{ mese }}</div>
+                            {% endfor %}
+                            <form method="post" action="{% url 'login' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Логин" required="" name="username">
+                                    <i class="ik ik-user"></i>
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control" placeholder="Пароль" required="" name="password">
+                                    <i class="ik ik-lock"></i>
+                                </div>
+                                <div class="sign-btn text-center">
+                                    <button type="submit" class="btn btn-theme">Авторизоваться</button>
+                                </div>
+                            </form>
+                            <div class="register">
+                                <p>У вас нет учетной записи?<a href="{% url 'register' %}"> Создать аккаунт</a></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% endblock %}
+
