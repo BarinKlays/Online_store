@@ -73,7 +73,7 @@ python manage.py migrate
 ```bash
 python manage.py createsuperuser
 ```
-6.Запустить сервер:
+6. Запустить сервер:
 ```basg
 python manage.py runserver
 ```
