@@ -50,20 +50,21 @@ Backend отвечает за:
 ## Установка и запуск
 
 1. Клонировать репозиторий:
+```bash
 git clone https://github.com/BarinKlays/Online_store.git
 
-2. Создать и активировать виртуальное окружение:
+3. Создать и активировать виртуальное окружение:
 python -m venv venv
 source venv/bin/activate  # Linux / macOS
 venv\Scripts\activate     # Windows
 
-3. Установить зависимости:
+4. Установить зависимости:
 pip install -r requirements.txt
 
-4. Применить миграции:
+5. Применить миграции:
 python manage.py migrate
 
-5. Создать суперпользователя:
+6. Создать суперпользователя:
 python manage.py createsuperuser
 
 6.Запустить сервер:
