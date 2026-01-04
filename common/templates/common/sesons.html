@@ -1,0 +1,64 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <div class="card">
+        <div class="card-header"><h3>Сезоны</h3></div>
+        <div class="card-body">
+            <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <a href="{% url 'addsesons' %}" class="btn btn-primary">Добавить сезон</a>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="data_table_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                                                                                   class="form-control form-control-sm"
+                                                                                                   placeholder=""
+                                                                                                   aria-controls="data_table"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="data_table" class="table dataTable no-footer" role="grid"
+                               aria-describedby="data_table_info">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="data_table" rowspan="1" colspan="1"
+                                    style="width: 117.75px;" aria-sort="ascending"
+                                    aria-label="Id: activate to sort column descending">Id
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="data_table" rowspan="1" colspan="1"
+                                    style="width: 342.15px;" aria-label="Name: activate to sort column ascending">Название
+                                </th>
+
+                                <th class="nosort sorting_disabled" rowspan="1" colspan="1" style="width: 279.433px;"
+                                    aria-label="&amp;nbsp;">&nbsp;
+                                </th>
+                            </tr>
+                            </thead>
+
+
+
+
+
+                            {% for item in sesons %}
+                                <tr role="row" class="odd">
+                                <td class="sorting_1">{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="{% url 'editsesons' pk=item.pk %}"><i class="ik ik-edit-2"></i></a>
+                                        <a href="{% url 'deletesesons' pk=item.pk %}"><i class="ik ik-trash-2"></i></a>
+                                    </div>
+                                </td>
+                            {% endfor %}
+
+                            </tr></tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

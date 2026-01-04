@@ -1,0 +1,24 @@
+{% extends "./base.html" %}
+{% block content %}
+{% load static %}
+<h1>Edit</h1>
+        <div class="auth-wrapper">
+            <div class="container-fluid h-100">
+                <div class="row flex-row h-100 ">
+                        <div class="authentication-form mx-auto">
+                            <h3>Редактирование профиля</h3>
+                            <form method="post" action="{% url 'useredit' pk=user.pk %}" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                {{form.as_p}}
+                                <div class="sign-btn text-center">
+                                    <button type="submit" class="btn btn-theme">Create Account</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+{% endblock %}

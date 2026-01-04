@@ -1,0 +1,58 @@
+{% extends './base.html' %}
+
+{% block content %}
+    <div class="container">
+
+        {% for product_info in product_list %}
+
+            <div class="ecommerce-gallery" data-mdb-ecommerce-gallery-init data-mdb-zoom-effect="true" data-mdb-auto-height="true">
+    <div class="row py-3 shadow-5">
+        <div class="col-12 col-lg-8 mb-1">
+            <div class="lightbox" data-mdb-lightbox-init>
+                <img src="{{ product_info.product_images.0.image.url }}" alt="Gallery image 1" class="ecommerce-gallery-main-img active w-100" style="    height: 483px;
+    object-fit: cover;"/>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4">
+            <div class="row">
+                {% for img in product_info.product_images %}
+                <div class="col-6 mt-1">
+                    <img src="{{ img.image.url }}" data-mdb-img="{{ img.image.url }}" alt="Gallery image 1" class="{% if forloop.first %}active{% endif %} w-100" style="height: 150px; object-fit: cover; margin-bottom: 10px;" />
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+            <h1>{{ product_info.product.name }}</h1>
+            <p>{{ product_info.product.description }}</p>
+            <p>{{ product_info.product.price }}</p>
+            <p>{{ product_info.product.country }}</p>
+            <p>{{ product_info.product.available_colors }}</p>
+            <p>{{ product_info.product.available_sizes }}</p>
+            <p>{{ product_info.product.seasons }}</p>
+            <p>{{ product_info.product.gender }}</p>
+            <p>{{ product_info.product.brand }}</p>
+            <p>{{ product_info.product.availability }}</p>
+            <p> Время {{ product_info.product.DateTimeSH }}</p>
+
+
+
+        {% endfor %}
+    </div>
+
+
+    <script>
+
+        document.querySelectorAll('.ecommerce-gallery img').forEach(img => {
+            img.addEventListener('click', function () {
+                const mainImg = document.querySelector('.ecommerce-gallery-main-img');
+                mainImg.src = img.getAttribute('data-mdb-img');
+            });
+        });
+    </script>
+{% endblock %}

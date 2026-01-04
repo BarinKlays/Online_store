@@ -1,0 +1,110 @@
+{% extends "./base.html" %}
+{% block content %}
+    <div class="card">
+        <div class="card-header"><h3>Data Table</h3></div>
+        <div class="card-body">
+            <div id="data_table_wrapper" class="dataTables_wrapper dt-bootstrap4 no-footer">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="data_table_length"><label>Show <select
+                                name="data_table_length" aria-controls="data_table"
+                                class="custom-select custom-select-sm form-control form-control-sm">
+                            <option value="10">10</option>
+                            <option value="25">25</option>
+                            <option value="50">50</option>
+                            <option value="100">100</option>
+                        </select> entries</label></div>
+                    </div>
+                    <div class="col-sm-12 col-md-6">
+                        <div id="data_table_filter" class="dataTables_filter"><label>Search:<input type="search"
+                                                                                                   class="form-control form-control-sm"
+                                                                                                   placeholder=""
+                                                                                                   aria-controls="data_table"></label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <table id="data_table" class="table dataTable no-footer" role="grid"
+                               aria-describedby="data_table_info">
+                            <thead>
+                            <tr role="row">
+                                <th class="sorting_asc" tabindex="0" aria-controls="data_table" rowspan="1" colspan="1"
+                                    style="width: 117.75px;" aria-sort="ascending"
+                                    aria-label="Id: activate to sort column descending">Id
+                                </th>
+                                <th class="nosort sorting_disabled" rowspan="1" colspan="1" style="width: 172.483px;"
+                                    aria-label="Avatar">Avatar
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="data_table" rowspan="1" colspan="1"
+                                    style="width: 342.15px;" aria-label="Name: activate to sort column ascending">Name
+                                </th>
+                                <th class="sorting" tabindex="0" aria-controls="data_table" rowspan="1" colspan="1"
+                                    style="width: 517.183px;" aria-label="Email: activate to sort column ascending">
+                                    Email
+                                </th>
+                                <th class="nosort sorting_disabled" rowspan="1" colspan="1" style="width: 279.433px;"
+                                    aria-label="&amp;nbsp;">&nbsp;
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+
+                            {% for us in users_list %}
+                                <tr role="row" class="odd">
+                                <td class="sorting_1">{{ us.info.id }}</td>
+                                <td>
+                                    {% if us.info.images.url %}
+                                        <img src="{{ us.info.images.url }}" class="table-user-thumb" alt="">
+                                    {% else %}
+                                        <img src="" class="table-user-thumb" alt="avatar">
+                                    {% endif %}
+                                </td>
+                                <td>{{ us.username }}</td>
+                                <td>{{ us.info.user.email }}</td>
+                                <td>
+                                    <div class="table-actions">
+                                        <a href="#"><i class="ik ik-eye"></i></a>
+                                        <a href="#"><i class="ik ik-edit-2"></i></a>
+                                        <a href="#"><i class="ik ik-trash-2"></i></a>
+                                    </div>
+                                </td>
+                            {% endfor %}
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info" id="data_table_info" role="status" aria-live="polite">Showing 1 to
+                            5 of 5 entries
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-7">
+                        <div class="dataTables_paginate paging_simple_numbers" id="data_table_paginate">
+                            <ul class="pagination">
+                                <li class="paginate_button page-item previous disabled" id="data_table_previous"><a
+                                        href="#" aria-controls="data_table" data-dt-idx="0" tabindex="0"
+                                        class="page-link">Previous</a></li>
+                                <li class="paginate_button page-item active"><a href="#" aria-controls="data_table"
+                                                                                data-dt-idx="1" tabindex="0"
+                                                                                class="page-link">1</a></li>
+                                <li class="paginate_button page-item next disabled" id="data_table_next"><a href="#"
+                                                                                                            aria-controls="data_table"
+                                                                                                            data-dt-idx="2"
+                                                                                                            tabindex="0"
+                                                                                                            class="page-link">Next</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

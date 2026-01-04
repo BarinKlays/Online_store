@@ -1,0 +1,158 @@
+{% extends "./base.html" %}
+
+
+
+{% block content %}
+    <h1>Добавить продукт</h1>
+
+<div class="container">
+{#    <form method="post" enctype="multipart/form-data">#}
+{#        {% csrf_token %}#}
+{#        <div class="mb-3">#}
+{#            <label  class="form-label" for="id_name">Name:</label>#}
+{#            <input  class="form-control" type="text" name="name" maxlength="100" required="" id="id_name">#}
+{#        </div>#}
+{##}
+{##}
+{#         <div class="mb-3">#}
+{#            <label class="form-label" for="id_price">Price:</label>#}
+{#            <input class="form-control" type="number" name="price" required="" id="id_price">#}
+{#        </div>#}
+{##}
+{##}
+{#         <div class="mb-3">#}
+{#            <label class="form-label" for="id_description">Description:</label>#}
+{#            <textarea class="form-control" name="description" cols="10" rows="10" required="" id="id_description"></textarea>#}
+{#         </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_brand">Brand:</label>#}
+{#            <select class="form-control" name="brand" required="" id="id_brand">#}
+{#                <option value="" selected="">---------</option>#}
+{##}
+{#                <option value="1">Papa</option>#}
+{##}
+{#            </select>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_gender">Gender:</label>#}
+{#            <input class="form-control" type="text" name="gender" maxlength="10" required="" id="id_gender">#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label"  for="id_available_sizes">Available sizes:</label>#}
+{#            <select class="form-control"  name="available_sizes" required="" id="id_available_sizes" multiple="">#}
+{#                <option value="1">s</option>#}
+{##}
+{#            </select>#}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_available_colors">Available colors:</label>#}
+{#            <select  class="form-control" name="available_colors" required="" id="id_available_colors" multiple="">#}
+{#                <option value="1">Розовыый</option>#}
+{##}
+{#            </select>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_date_added">Date added:</label>#}
+{#            <input class="form-control" type="text" name="date_added" value="2024-04-24 22:28:44" required="" id="id_date_added"><input#}
+{#                type="hidden" name="initial-date_added" value="2024-04-24 22:28:44" id="initial-id_date_added">#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label"  for="id_availability">Availability:</label>#}
+{#            <input class="form-control" type="checkbox" name="availability" id="id_availability">#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_seasons">Seasons:</label>#}
+{#            <select class="form-control" name="seasons" required="" id="id_seasons" multiple="">#}
+{#                <option value="1">лето</option>#}
+{##}
+{#            </select>#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{##}
+{#        <div class="mb-3">#}
+{#            <select class="form-select" name="country" required="" >#}
+{#                <option value="" selected="">Страна</option>#}
+{#                <option value="1">Россия</option>#}
+{#            </select>#}
+{#        </div>#}
+{##}
+{#        <input type="file" name="image" accept="image/*" multiple>#}
+{##}
+{#        <div class="mb-3">#}
+{#            <label  class="form-label" for="id_0-image">Image:</label>#}
+{#            <input class="form-control" type="file" name="0-image" accept="image/*" required="" id="id_0-image">#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_1-image">Image:</label>#}
+{#            <input  class="form-control" type="file" name="1-image" accept="image/*" required="" id="id_1-image">#}
+{##}
+{##}
+{#       </div>#}
+{##}
+{#        <div class="mb-3">#}
+{#            <label  class="form-label"  for="id_2-image">Image:</label>#}
+{#            <input  class="form-control" type="file" name="2-image" accept="image/*" required="" id="id_2-image">#}
+{##}
+{##}
+{#        </div>#}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_3-image">Image:</label>#}
+{#            <input class="form-control" type="file" name="3-image" accept="image/*" required="" id="id_3-image">#}
+{##}
+{##}
+{#       </div>#}
+{##}
+{#        <div class="mb-3">#}
+{#            <label class="form-label" for="id_4-image">Image:</label>#}
+{#            <input class="form-control" type="file" name="4-image" accept="image/*" required="" id="id_4-image">#}
+{#        </div>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{#        <input type="submit" value="Save">#}
+{#    </form>#}
+
+<form method="post" enctype="multipart/form-data">
+    {{ product_form.as_p }}
+    {{ formset.management_form }}
+    {% for form in formset %}
+        {{ form.as_p }}
+    {% endfor %}
+    {% csrf_token %}
+    <button type="submit">Save</button>
+</form>
+
+</div>
+{% endblock %}

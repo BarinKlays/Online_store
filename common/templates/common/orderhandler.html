@@ -1,0 +1,62 @@
+{% extends './base.html' %}
+
+
+{% block content %}
+
+    <style>
+    .form_order {
+        text-align: center;
+        padding: 10px;
+    }
+    </style>
+<div class="container" style=" display: flex;flex-wrap: wrap;">
+        {% for item in basket %}
+
+        <div class="col">
+            <div class="card" style="width: 18rem;">
+                <div class="card-body">
+
+                    <h5 class="card-title">Пользователь: {{ item.user }}</h5>
+                    <p class="card-text" style="margin-bottom: 0.75em">Страна: {{ item.country_basket }}</p>
+                    <p class="card-text" style="margin-bottom: 0.75em">Штаты: {{ item.state }}</p>
+                    <p class="card-text" style="margin-bottom: 0.75em">Индекс: {{ item.postcode }}</p>
+                    <p class="card-text" style="margin-bottom: 0.75em">статус: {{ item.get_status_display }}</p>
+                    <a href="#">{{ item.info.price }}</a>
+                    {% for bas in item.cart.all %}
+                        <p>Товар {{ bas.product }} <br> Количество: {{ bas.quantity }} <br> размер: {{ bas.size }} <br> цвет: {{ bas.color }}</p>
+                    {% endfor %}
+                </div>
+            {% if item.status == 'New' %}
+                <form class="form_order" action="{% url 'UpladedOrder'  pk=item.pk  %}" method="post">
+                {% csrf_token %}
+            <button type="submit" class="btn btn-info">Ищем товар</button><br>
+                </form>
+            {% endif  %}
+            {% if item.status == "Search" %}
+                <form class="form_order" action="{% url 'YpokovOrder' pk=item.pk %}"  method="post">
+                {% csrf_token %}
+            <button type="submit" class="btn btn-info">Упаковаем</button><br>
+                </form>
+            {% endif %}
+{% if item.status == "Ypokov" %}
+                <form class="form_order" action="{% url 'OtpravkaOrder' pk=item.pk %}"  method="post">
+                    {% csrf_token %}
+            <button type="submit" class="btn btn-info">Отправляем</button><br>
+                    {% endif %}
+                    </form>
+
+                <form class="form_order" action="{% url 'CompletedOrder' pk=item.pk %}" method="post">
+                    {% csrf_token %}
+                    {% if item.status == "Otpravka" %}
+            <button type="submit" class="btn btn-info">Завершить заказ</button>
+                    {% endif %}
+                    </form>
+            </div>
+        </div>
+        <br>
+
+    {% endfor %}
+</div>
+
+
+{% endblock %}

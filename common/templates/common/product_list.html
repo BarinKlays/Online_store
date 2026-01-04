@@ -1,0 +1,35 @@
+{% extends "./base.html" %}
+{% load static %}
+{% block content %}
+    <h1>Все товары</h1>
+    <a href="{% url 'add_product' %}" class="btn btn-primary">Добавить товар</a>
+    <div class="container" style="max-width: 1500px; margin-top: 50px">
+        <div class="row">
+            {% for item in product_list %}
+                <a href="{% url 'product_detail' pk=item.info.pk %}">
+                    <div class="col">
+                        <div class="card" style="width: 18rem;">
+                            {% if item.productimage %}
+                                <img src="{{ item.productimage.0.image.url }}" class="card-img-top"
+                                     alt="должна быть картинка" style="height: 300px; object-fit: cover">
+                            {% endif %}
+                            <div class="card-body">
+                                <h5 class="card-title">{{ item.info.name }}</h5>
+                                <p class="card-text" style="margin-bottom: 0.75em">{{ item.info.description }}</p>
+                                <a href="#">{{ item.info.price }}</a>
+                            </div>
+                        <a href="{% url 'product_edit' pk=item.info.pk %}" class="btn btn-info">Редактировать</a>
+                            <a href="{% url 'Delete_Product' pk=item.info.pk %}" class="btn btn-danger">Удалить</a>
+                        </div>
+                    </div>
+                </a>
+
+            {% endfor %}
+        </div>
+    </div>
+
+    </div>
+
+    </div>
+
+{% endblock %}

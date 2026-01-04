@@ -1,0 +1,125 @@
+{% extends "./base.html" %}
+
+
+
+{% block content %}
+    <h1>Добавить продукт</h1>
+
+<div class="container">
+    <form method="post" enctype="multipart/form-data" action="{% url 'add_product' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label  class="form-label" for="id_name">Название:</label>
+            <input  class="form-control" type="text" name="name" maxlength="100" required="" id="id_name">
+        </div>
+
+
+         <div class="mb-3">
+            <label class="form-label" for="id_price">Цена:</label>
+            <input class="form-control" type="number" name="price" required="" id="id_price">
+        </div>
+
+
+         <div class="mb-3">
+            <label class="form-label" for="id_description">Описание:</label>
+            <textarea class="form-control" name="description" cols="10" rows="10" required="" id="id_description"></textarea>
+         </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="id_brand">Бренд:</label>
+            <select class="form-control" name="brand" required="" id="id_brand">
+                <option value="" selected="">---------</option>
+                {% for item in brand %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+
+            </select>
+
+
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="id_gender">Пол:</label>
+                    <select class="form-control"  name="gender" required="" id="id_available_sizes" multiple="">
+                {% for value, display in product_gender %}
+                <option value="{{ value }}">{{ display }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label"  for="id_available_sizes">Выбирете размер:</label>
+            <select class="form-control"  name="available_sizes" required="" id="id_available_sizes" multiple="">
+                {% for item in size %}
+                <option value="{{ item.id }}">{{ item.size_value }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="id_available_colors">Выберете цвет:</label>
+            <select  class="form-control" name="available_colors" required="" id="id_available_colors" multiple="">
+                {% for item in colors %}
+                <option value="{{ item.id }}">{{ item.color_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="id_date_added">Дата добавление:</label>
+            <input class="form-control" type="text" name="date_added" value="2024-04-24 22:28:44" required="" id="id_date_added"><input
+                type="hidden" name="initial-date_added" value="2024-04-24 22:28:44" id="initial-id_date_added">
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label"  for="id_availability">Скидка:</label>
+            <input class="form-control" type="checkbox" name="availability" id="id_availability">
+
+
+        </div>
+
+
+        <div class="mb-3">
+            <label class="form-label" for="id_seasons">Сезон:</label>
+            <select class="form-control" name="seasons" required="" id="id_seasons" multiple="">
+                {% for item in sesons %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label" for="id_seasons">Категория:</label>
+            <select class="form-control" name="category" required="" id="id_seasons" multiple="">
+                {% for item in category %}
+                <option value="{{ item.id }}">{{ item.category_name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+        <div class="mb-3">
+            <select class="form-select" name="country" required="" >
+                <option value="" selected="">Страна</option>
+                {% for item in country %}
+                <option value="{{ item.id }}">{{ item.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+
+    <div class="mb-3">
+        <label class="form-label" for="id_images">Загрузить фото:</label>
+        <input class="form-control" type="file" name="image" accept="image/*" id="id_images" multiple>
+    </div>
+
+        <input type="submit" value="Save">
+    </form>
+</div>
+{% endblock %}

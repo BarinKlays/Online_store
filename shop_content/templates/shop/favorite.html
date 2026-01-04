@@ -1,0 +1,82 @@
+{% extends './shop.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="container">
+        <div id="product-list" class="row isotope-grid">
+
+                {% for card in product_list %}
+				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
+					<!-- Block2 -->
+					<div class="block2">
+						<div class="block2-pic hov-img0">
+							<img src="{{ card.productimage.0.image.url }}" alt="IMG-PRODUCT">
+						</div>
+
+						<div class="block2-txt flex-w flex-t p-t-14">
+							<div class="block2-txt-child1 flex-col-l ">
+								<a href="{% url 'productdetail' pk=card.info.pk %}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+									{{ card.info.name }}
+								</a>
+
+								<span class="stext-105 cl3">
+									₽ {{ card.info.price }}
+								</span>
+							</div>
+
+                            <style>
+        .hidden {
+            display: none;
+
+        }
+    </style>
+							<div class="block2-txt-child2 flex-r p-t-3">
+								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2 " data-id="{{ card.info.pk }}" >
+									<img class="icon-hear1 dis-block trans-04 {% if not card.is_favorited %}hidden{% endif %} " src="{% static 'shop/images/icons/icon-heart-01.png' %}" alt="ICON">
+									<img class="icon-hear2 dis-block trans-04 {% if  card.is_favorited %}hidden{% endif %} " src="{% static 'shop/images/icons/icon-heart-02.png' %}" alt="ICON" >
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+                {% endfor %}
+			</div>
+    </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Обработчик события click для каждого изображения сердца
+            $(document).on('click', '.js-addwish-b2', function(event) {
+                event.preventDefault();
+                var productId = $(this).data('id');
+                var clickedElement = $(this);
+                toggleFavorite(productId, clickedElement);
+            });
+
+            function toggleFavorite(productId, clickedElement) {
+                $.ajax({
+                    url: '{% url "toggle_favorite" %}',  // URL для обработки запроса на сервере
+                    type: 'POST',
+                    data: {
+                        'product_id': productId,
+                        'csrfmiddlewaretoken': '{{ csrf_token }}'
+                    },
+                    success: function(response) {
+                        if (response.status === 'added') {
+                            // Если добавлено, скрываем первое изображение, показываем второе
+                            clickedElement.find('.icon-hear1').addClass('hidden');
+                            clickedElement.find('.icon-hear2').removeClass('hidden');
+                        } else if (response.status === 'removed') {
+                            // Если удалено, показываем первое изображение, скрываем второе
+                            clickedElement.find('.icon-hear1').removeClass('hidden');
+                            clickedElement.find('.icon-hear2').addClass('hidden');
+                        }
+                    },
+                    error: function() {
+                        alert('Произошла ошибка.');
+                    }
+                });
+            }
+        });
+    </script>
+{% endblock %}

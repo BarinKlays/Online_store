@@ -1,0 +1,31 @@
+.a_corzina{
+    color: black;
+}
+
+.a_corzina:hover{
+    color: #6c7ae0;
+}
+
+.profile_user{
+    padding: 10px;
+    border-radius: 30px;
+    color: black;
+    border: 1px solid black;
+}
+
+.profile_user:hover{
+
+    color: #6c7ae0;
+    border: 1px solid #6c7ae0;
+}
+
+.button_editprofil{
+    border: 1px solid black;
+    border-radius: 30px;
+    padding: 15px;
+}
+
+.button_editprofil:hover{
+    color: #6c7ae0;
+    border: 1px solid #6c7ae0;
+}

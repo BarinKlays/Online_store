@@ -1,0 +1,236 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>ThemeKit - Admin Template</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+
+    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,600,700,800" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'common/node_moduls/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/bootstrap.css.map' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/theme.min.css.map' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/icon-kit/css/iconkit.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/iconkit.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/tempusdominus-bootstrap-4.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/c3.min.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/perfect-scrollbar.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/owl.theme.default.css' %}">
+    <link rel="stylesheet" href="{% static 'common/node_moduls/theme.min.css' %}">
+    <script src="{% static 'common/node_moduls/modernizr-2.8.3.min.js' %}"></script>
+</head>
+
+<body>
+<!--&lt;!&ndash;[if lt IE 8]>-->
+<!--<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade-->
+<!--    your browser</a> to improve your experience.</p>-->
+<!--<![endif]&ndash;&gt;-->
+
+<div class="wrapper">
+    {% include './navbar.html' %}
+
+    <div class="page-wrap">
+        <div class="app-sidebar colored">
+            <div class="sidebar-header">
+                <a class="header-brand" href="{% url 'indexshop' %}">
+                    <div class="logo-img">
+     <img style="    height: 35px;" src="{% static 'common/img/logo.png' %}" class="header-brand-img" alt="lavalite">
+                    </div>
+                    <span style="    padding-left: 20px;" class="text">StyleHaven</span>
+                </a>
+                <button type="button" class="nav-toggle"><i data-toggle="expanded"
+                                                            class="ik ik-toggle-right toggle-icon"></i></button>
+                <button id="sidebarClose" class="nav-close"><i class="ik ik-x"></i></button>
+            </div>
+
+            <div class="sidebar-content">
+                <div class="nav-container">
+                    <nav id="main-menu-navigation" class="navigation-main">
+                        <div class="nav-lavel">Navigation</div>
+{#                        {% if request.resolver_match.url_name == 'adminka' %}active{% endif %}#}
+                        <div class="nav-item">
+                            <a href="{% url 'adminka' %}"><i class="ik ik-bar-chart-2"></i><span>панель статистики</span></a>
+                        </div>
+{#                        <div class="nav-item">#}
+{#                            <a href="pages/navbar.html"><i class="ik ik-menu"></i><span>Navigation</span> <span#}
+{#                                    class="badge badge-success">New</span></a>#}
+{#                        </div>#}
+{#                        <div class="nav-item has-sub">#}
+{#                            <a href="javascript:void(0)"><i class="ik ik-layers"></i><span>Widgets</span> <span#}
+{#                                    class="badge badge-danger">150+</span></a>#}
+{#                            <div class="submenu-content">#}
+{#                                <a href="pages/widgets.html" class="menu-item">Basic</a>#}
+{#                                <a href="pages/widget-statistic.html" class="menu-item">Statistic</a>#}
+{#                                <a href="pages/widget-data.html" class="menu-item">Data</a>#}
+{#                                <a href="pages/widget-chart.html" class="menu-item">Chart Widget</a>#}
+{#                            </div>#}
+{#                        </div>#}
+
+                        <div class="nav-lavel">Other</div>
+                        <div class="nav-item  has-sub">
+                            <a href="javascript:void(0)"><i class="ik ik-list"></i><span>Хранилище</span></a>
+                            <div class="submenu-content">
+                                <a href="{% url 'user_list' %}" class="menu-item">Пользователи</a>
+                                <a href="{% url 'product_list' %}" class="menu-item">Все товары</a>
+                                <div class="nav-item has-sub">
+                                    <a href="javascript:void(0)" class="menu-item">Характиристики</a>
+                                    <div class="submenu-content">
+                                        <a href="{% url 'brand' %}" class="menu-item">Бренд</a>
+                                        <a href="{% url 'size' %}" class="menu-item">Размер</a>
+                                        <a href="{% url 'colors' %}" class="menu-item">Цвет</a>
+                                        <a href="{% url 'sesons' %}" class="menu-item">Сезон</a>
+                                        <a href="{% url 'country' %}" class="menu-item">Страна</a>
+                                    </div>
+                                </div>
+                                <a href="{% url 'slider' %}" class="menu-item">Слайдер</a>
+                                <a href="{% url 'aboutview' %}" class="menu-item">О нас</a>
+                                <a href="{% url 'contactviewadmin' %}" class="menu-item">Контакты</a>
+                                <a href="{% url 'feedback' %}" class="menu-item">Обратная связь</a>
+                            </div>
+                        </div>
+                        <div class="nav-item">
+                                    <a href="{% url 'orderhandler' %}"><i class="ik ik-package"></i><span>Обработчки заказов</span></a>
+                                </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div class="main-content">
+            {% block content %}
+
+
+
+            {% endblock %}
+            <div class="container-fluid">
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<div class="modal fade apps-modal" id="appsModal" tabindex="-1" role="dialog" aria-labelledby="appsModalLabel"
+     aria-hidden="true" data-backdrop="false">
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="ik ik-x-circle"></i></button>
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="quick-search">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4 ml-auto mr-auto">
+                            <div class="input-wrap">
+                                <input type="text" id="quick-search" class="form-control" placeholder="Search..."/>
+                                <i class="ik ik-search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body d-flex align-items-center">
+                <div class="container">
+                    <div class="apps-wrap">
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-bar-chart-2"></i><span>Dashboard</span></a>
+                        </div>
+                        <div class="app-item dropdown">
+                            <a href="#" class="dropdown-toggle" role="button" id="dropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i
+                                    class="ik ik-command"></i><span>Ui</span></a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item" href="#">Something else here</a>
+                            </div>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-mail"></i><span>Message</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-users"></i><span>Accounts</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-shopping-cart"></i><span>Sales</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-briefcase"></i><span>Purchase</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-server"></i><span>Menus</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-clipboard"></i><span>Pages</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-message-square"></i><span>Chats</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-map-pin"></i><span>Contacts</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-box"></i><span>Blocks</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-calendar"></i><span>Events</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-bell"></i><span>Notifications</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-pie-chart"></i><span>Reports</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-layers"></i><span>Tasks</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-edit"></i><span>Blogs</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-settings"></i><span>Settings</span></a>
+                        </div>
+                        <div class="app-item">
+                            <a href="#"><i class="ik ik-more-horizontal"></i><span>More</span></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script>window.jQuery || document.write('<script src="src/js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+<script src="{% static 'common/node_moduls/popper.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/bootstrap.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/perfect-scrollbar.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/screenfull.js' %}"></script>
+<script src="{% static 'common/node_moduls/jquery.dataTables.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/dataTables.bootstrap4.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/dataTables.responsive.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/responsive.bootstrap4.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/moment.js' %}"></script>
+<script src="{% static 'common/node_moduls/tempusdominus-bootstrap-4.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/d3.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/c3.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/tables.js' %}"></script>
+<script src="{% static 'common/node_moduls/widgets.js' %}"></script>
+<script src="{% static 'common/node_moduls/theme.min.js' %}"></script>
+<script src="{% static 'common/js/modernizr-2.8.3.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/jquery-3.3.1.min.js' %}"></script>
+<script src="{% static 'common/node_moduls/datatables.js' %}"></script>
+<script src="{% static 'common/node_moduls/bootstrap.min.js.map' %}"></script>
+<script src="{% static 'common/node_moduls/popper.min.js.map' %}"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>

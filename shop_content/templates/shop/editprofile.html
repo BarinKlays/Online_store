@@ -1,0 +1,46 @@
+{% extends './shop.html' %}
+{% load static %}
+
+{% block content %}
+    <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+        <div class="col-lg-12 col-md-5" style="display: flex; justify-content: center; padding: 50px;">
+            <div class="card">
+                <div class="card-body">
+                    <div class="text-center">
+
+                        <img src="{{ info.images.url }}{% static 'shop/images/2.jpeg' %}" alt="Ваша аватарка"
+                             class="rounded-circle" width="150">
+                        <input style="padding-top: 20px" type="file" name="images" accept="image/*" required="" id="id_images">
+                        <h4 style="padding-top: 40px;" class="card-title mt-1">
+                            <input type="text" name="username" maxlength="150" autofocus="" required="" id="id_username"
+                                   placeholder="Ваше логин: {{ user_info.username.username }}">
+                        </h4>
+                        <br>
+                        <p class="card-subtitle">
+                            <input type="text" placeholder="Ваше имя: {{ user_info.username.first_name }}" name="first_name" maxlength="150" id="id_first_name">
+                        </p>
+                        <br>
+                        <p class="card-subtitle">
+                            <input type="text" placeholder="Ваше фамилия: {{ user_info.username.surname }}" name="surname" maxlength="150" id="id_first_name">
+                        </p>
+                    </div>
+                </div>
+                <hr class="mb-0">
+                <div class="card-body">
+                    <small class="text-muted d-block">Email</small>
+                    <h6>
+                        <input type="email" name="email" placeholder="{{ user_info.username.email }}" maxlength="254" id="id_email"></h6>
+                    <br>
+                    <small class="text-muted d-block pt-10">Номер телефона</small>
+                    <h6>
+                        <input type="number" name="phone_number" placeholder="{{ user_info.info.phone_number }}" required="" id="id_phone_number">
+                    </h6>
+                </div>
+                <button class="button_editprofil" type="submit">Сохранить</button>
+            </div>
+        </div>
+    </form>
+
+
+{% endblock %}

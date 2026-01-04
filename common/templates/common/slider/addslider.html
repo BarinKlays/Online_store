@@ -1,0 +1,11 @@
+{% extends '../base.html' %}
+
+{% block content %}
+
+<form action="{% url 'addslider' %}" method="post" enctype="multipart/form-data">
+{% csrf_token %}
+    {{ form.as_p }}
+<button type="submit"  class="btn btn-outline-dark">Добавить</button>
+</form>
+
+{% endblock %}
